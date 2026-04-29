@@ -35,21 +35,11 @@ class AuthenticatedSessionController extends Controller
         $user = Auth::user();
         $role = $user->role ?? $user->roles?->first()?->name ?? 'NO_ROLE';
 
-        // TEMPORARY DEBUG — remove after fixing
-        \Illuminate\Support\Facades\Log::info('LOGIN DEBUG', [
-            'user_id'  => $user->id,
-            'email'    => $user->email,
-            'role'     => $role,
-            'intended' => redirect()->intended('/')->getTargetUrl(),
-        ]);
-
         $redirectTo = match(true) {
             $role === 'student'                                          => route('student.dashboard'),
             in_array($role, ['dean', 'admin', 'registrar', 'professor']) => route('dashboard'),
             default                                                      => route('dashboard'),
         };
-
-        \Illuminate\Support\Facades\Log::info('REDIRECTING TO: ' . $redirectTo);
 
         return redirect($redirectTo);
     }

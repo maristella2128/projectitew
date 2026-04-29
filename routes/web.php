@@ -5,39 +5,6 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Helpers\SpaRouting as Inertia;
 
-Route::get('/debug-db', function () {
-    try {
-        \Illuminate\Support\Facades\DB::connection()->getPdo();
-        $tables = \Illuminate\Support\Facades\DB::select('SHOW TABLES');
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Database connection is working!',
-            'tables' => count($tables),
-            'session_driver' => config('session.driver'),
-            'app_env' => config('app.env'),
-            'app_url' => config('app.url'),
-            'ca_path' => env('MYSQL_ATTR_SSL_CA'),
-            'ca_exists' => file_exists(base_path(env('MYSQL_ATTR_SSL_CA'))),
-        ]);
-    } catch (\Exception $e) {
-        return response()->json([
-            'status' => 'error',
-            'message' => $e->getMessage(),
-        ], 500);
-    }
-});
-
-Route::get('/debug-file', function () {
-    $path = base_path('ca.pem');
-    return response()->json([
-        'path' => $path,
-        'exists' => file_exists($path),
-        'readable' => is_readable($path),
-        'size' => file_exists($path) ? filesize($path) : 0,
-        'dir' => scandir(base_path()),
-    ]);
-});
-
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 
