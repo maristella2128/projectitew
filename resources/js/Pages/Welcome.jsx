@@ -459,7 +459,7 @@ export default function Login({ auth, customization = {} }) {
     box-shadow: 0 6px 20px ${primaryColor}5c;
   }
 
-  ${css.split('/* ── Single root div  .page ── */')[1] || ''}
+  ${css.split('/* ── Background scene (spans full .page) ── */')[1] || ''}
   `;
 
   return (
