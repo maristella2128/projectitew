@@ -27,6 +27,17 @@ Route::get('/debug-db', function () {
     }
 });
 
+Route::get('/debug-file', function () {
+    $path = base_path('ca.pem');
+    return response()->json([
+        'path' => $path,
+        'exists' => file_exists($path),
+        'readable' => is_readable($path),
+        'size' => file_exists($path) ? filesize($path) : 0,
+        'dir' => scandir(base_path()),
+    ]);
+});
+
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 
