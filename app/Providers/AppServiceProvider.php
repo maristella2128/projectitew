@@ -23,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if (env('APP_ENV') !== 'local') {
+            \Illuminate\Support\Facades\URL::forceScheme('https');
+        }
+
         \App\Models\Grade::observe(\App\Observers\GradeObserver::class);
         \App\Models\StudentActivity::observe(\App\Observers\StudentActivityObserver::class);
         \App\Models\BehaviorLog::observe(\App\Observers\BehaviorLogObserver::class);
