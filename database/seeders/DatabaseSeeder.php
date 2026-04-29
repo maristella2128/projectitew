@@ -35,8 +35,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Teacher One',
             'email' => 'teacher1@example.com',
             'password' => \Illuminate\Support\Facades\Hash::make('password'),
-            'role' => 'teacher',
-        ])->assignRole('teacher');
+            'role' => 'professor',
+        ])->assignRole('professor');
 
         // More seeders will be added later for sections and students
     }
