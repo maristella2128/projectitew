@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #app {
+    min-height: 100vh !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+    background: var(--background) !important;
+    font-family: var(--body-font) !important;
+    font-size: var(--font-size) !important;
+    line-height: var(--line-height) !important;
+    color: var(--text-primary) !important;
+}
+
+h1, h2, h3, h4, h5, h6, .font-serif {
+    font-family: var(--display-font) !important;
+}
+
+.font-mono {
+    font-family: var(--mono-font) !important;
+}
+
+::-webkit-scrollbar { width: 3px; height: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #2a1204; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #f97316; }
